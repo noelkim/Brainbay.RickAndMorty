@@ -2,7 +2,7 @@
 
 namespace RickAndMorty.Net.Api.Models.Domain
 {
-    internal interface IRickAndMortyMapper
+    public interface IRickAndMortyMapper
     {
         IMapper Mapper { get; set; }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using EnsureThat;
 using RickAndMorty.Net.Api.Helpers;
@@ -12,7 +13,8 @@ namespace RickAndMorty.Net.Api.Service
 {
     internal class RickAndMortyService : BaseService, IRickAndMortyService
     {
-        public RickAndMortyService(IRickAndMortyMapper rickAndMortyMapper, string baseAddress = "https://rickandmortyapi.com/") : base(rickAndMortyMapper, baseAddress)
+        public RickAndMortyService(HttpClient httpClient,IRickAndMortyMapper rickAndMortyMapper) 
+            : base(httpClient, rickAndMortyMapper)
         {
         }
 

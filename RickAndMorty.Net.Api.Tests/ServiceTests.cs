@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
-using RickAndMorty.Net.Api.Factory;
+using Microsoft.Extensions.DependencyInjection;
+using RickAndMorty.Net.Api.Models.Domain;
 using RickAndMorty.Net.Api.Models.Enums;
 using RickAndMorty.Net.Api.Service;
 using Xunit;
@@ -9,13 +10,21 @@ namespace RickAndMorty.Net.Api.Tests
 {
     public class ServiceTests
     {
-        //TODO: comments
-
         private IRickAndMortyService RickAndMortyService { get; }
 
         public ServiceTests()
         {
-            RickAndMortyService = RickAndMortyApiFactory.Create();
+            // Use Dependency Injection and configure our services
+            var services = new ServiceCollection();
+            services.AddTransient<IRickAndMortyService, RickAndMortyService>();
+            services.AddSingleton<IRickAndMortyMapper>(RickAndMortyMapper.Create());
+
+            // Register internal DefaultHttpClientFactory via extension method.
+            // https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#how-to-use-typed-clients-with-ihttpclientfactory
+            services.AddHttpClient<IRickAndMortyService, RickAndMortyService>(
+                                      c => c.BaseAddress = new Uri("https://rickandmortyapi.com/"));
+            var serviceProvider = services.BuildServiceProvider();
+            RickAndMortyService = serviceProvider.GetRequiredService<IRickAndMortyService>();
         }
 
         [Theory]
@@ -46,7 +55,7 @@ namespace RickAndMorty.Net.Api.Tests
         }
 
         [Theory]
-        [InlineData(new[] {5, 10})]
+        [InlineData(new[] { 5, 10 })]
         public async void GetMultipleCharactersTest(int[] value)
         {
             var result = await RickAndMortyService.GetMultipleCharacters(value);
@@ -173,7 +182,7 @@ namespace RickAndMorty.Net.Api.Tests
         [InlineData("Rick")]
         public async void FilterEpisodesTest(string value)
         {
-            var result = await RickAndMortyService.FilterEpisodes(name:value);
+            var result = await RickAndMortyService.FilterEpisodes(name: value);
 
             Assert.NotNull(result);
             Assert.True(result.Any());

@@ -15,16 +15,11 @@ namespace RickAndMorty.Net.Api.Service
         private HttpClient Client { get; }
         protected IRickAndMortyMapper RickAndMortyMapper { get; }
 
-        protected BaseService(IRickAndMortyMapper rickAndMortyMapper, string baseAddress)
+        protected BaseService(HttpClient httpClient, IRickAndMortyMapper rickAndMortyMapper)
         {
+            Ensure.Any.IsNotNull(httpClient);
             RickAndMortyMapper = rickAndMortyMapper;
-
-            Ensure.Bool.IsTrue(Uri.IsWellFormedUriString(baseAddress, UriKind.RelativeOrAbsolute));
-
-            Client = new HttpClient
-            {
-                BaseAddress = new Uri(baseAddress)
-            };
+            Client = httpClient;
         }
 
         /// <summary>
