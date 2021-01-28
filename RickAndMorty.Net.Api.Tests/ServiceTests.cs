@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
+using AutoMapper;
+using Brainbay.Submission.DataAccess.Mapper;
+using Brainbay.Submission.DataAccess.Models.Enums;
 using Microsoft.Extensions.DependencyInjection;
-using RickAndMorty.Net.Api.Models.Domain;
-using RickAndMorty.Net.Api.Models.Enums;
 using RickAndMorty.Net.Api.Service;
 using Xunit;
 
@@ -14,12 +15,13 @@ namespace RickAndMorty.Net.Api.Tests
 
         public ServiceTests()
         {
-            // Use Dependency Injection and configure our services
+            // Use Dependency Injection and configure the services
             var services = new ServiceCollection();
-            services.AddTransient<IRickAndMortyService, RickAndMortyService>();
-            services.AddSingleton<IRickAndMortyMapper>(RickAndMortyMapper.Create());
+            services.AddTransient<IRickAndMortyService, RickAndMortyService>()
+                    .AddAutoMapper(c => c.AddProfile<RickAndMortyMapperProfile>());
 
-            // Register internal DefaultHttpClientFactory via extension method.
+
+            // Register internal DefaultHttpClientFactory
             // https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#how-to-use-typed-clients-with-ihttpclientfactory
             services.AddHttpClient<IRickAndMortyService, RickAndMortyService>(
                                       c => c.BaseAddress = new Uri("https://rickandmortyapi.com/"));

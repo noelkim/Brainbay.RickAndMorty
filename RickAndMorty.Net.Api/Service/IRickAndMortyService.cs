@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Brainbay.Submission.DataAccess.Models.Domain;
+using Brainbay.Submission.DataAccess.Models.Enums;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using RickAndMorty.Net.Api.Models.Domain;
-using RickAndMorty.Net.Api.Models.Enums;
 
 namespace RickAndMorty.Net.Api.Service
 {

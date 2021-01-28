@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using AutoMapper;
+using Brainbay.Submission.DataAccess.Models.Dto;
 using EnsureThat;
 using Newtonsoft.Json;
 using RickAndMorty.Net.Api.Helpers;
-using RickAndMorty.Net.Api.Models.Domain;
-using RickAndMorty.Net.Api.Models.Dto;
 
 namespace RickAndMorty.Net.Api.Service
 {
     internal abstract class BaseService
     {
         private HttpClient Client { get; }
-        protected IRickAndMortyMapper RickAndMortyMapper { get; }
+        protected IMapper Mapper { get; }
 
-        protected BaseService(HttpClient httpClient, IRickAndMortyMapper rickAndMortyMapper)
+        protected BaseService(HttpClient httpClient, IMapper mapper)
         {
             Ensure.Any.IsNotNull(httpClient);
-            RickAndMortyMapper = rickAndMortyMapper;
             Client = httpClient;
+            Mapper = mapper;
         }
 
         /// <summary>
