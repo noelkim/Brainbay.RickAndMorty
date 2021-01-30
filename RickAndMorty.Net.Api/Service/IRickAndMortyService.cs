@@ -1,4 +1,5 @@
 ﻿using Brainbay.Submission.DataAccess.Models.Domain;
+using Brainbay.Submission.DataAccess.Models.Dto;
 using Brainbay.Submission.DataAccess.Models.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -42,6 +43,25 @@ namespace RickAndMorty.Net.Api.Service
             string type = "",
             CharacterGender? gender = null);
 
+
+        /// <summary>
+        /// Filter characters.
+        /// This also returns <see cref="PageInfoDto"/>.
+        /// </summary>
+        /// <param name="page">Page number to be fetched.</param>
+        /// <param name="name">Filter by the given name.</param>
+        /// <param name="characterStatus">Filter by the given status (alive, dead or unknown).</param>
+        /// <param name="species">Filter by the given species.</param>
+        /// <param name="type">Filter by the given type.</param>
+        /// <param name="gender">Filter by the given gender (female, male, genderless or unknown).</param>
+        /// <returns>A ValueTuple. First item is the <see cref="PageInfoDto"/>.
+        ///          Second item is the characters enumerable.</returns>
+        Task<PagedCharacters> FilterCharacterSinglePage(int page = 1,
+                                                                              string name = "",
+                                                                              CharacterStatus? characterStatus = null,
+                                                                              string species = "",
+                                                                              string type = "",
+                                                                              CharacterGender? gender = null);
         /// <summary>
         /// Get all locations.
         /// </summary>
@@ -101,5 +121,6 @@ namespace RickAndMorty.Net.Api.Service
         /// <returns>Episodes enumerable.</returns>
         Task<IEnumerable<Episode>> FilterEpisodes(string name = "",
             string episode = "");
+
     }
 }

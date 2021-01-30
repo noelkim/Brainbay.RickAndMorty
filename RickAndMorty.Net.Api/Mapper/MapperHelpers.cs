@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-namespace Brainbay.Submission.DataAccess.Helpers
+namespace RickAndMorty.Net.Api.Mapper
 {
     public static class MapperHelpers
     {
@@ -28,5 +30,20 @@ namespace Brainbay.Submission.DataAccess.Helpers
         /// <returns>Datetime object.</returns>
         public static DateTime ToDateTime(this string value) =>
             string.IsNullOrEmpty(value) ? DateTime.MinValue : DateTime.Parse(value);
+
+
+        /// <summary>
+        /// Apply the regex input to extract an integer value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="regex"></param>
+        /// <returns></returns>
+        public static int ExtractInt(this string value, Regex regex)
+        {
+            _ = int.TryParse(
+                regex.Match(value).Captures.FirstOrDefault().Value
+                , out var id);
+            return id;
+        }
     }
 }

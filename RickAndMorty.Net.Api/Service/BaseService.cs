@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,7 +10,7 @@ using RickAndMorty.Net.Api.Helpers;
 
 namespace RickAndMorty.Net.Api.Service
 {
-    internal abstract class BaseService
+    public abstract class BaseService
     {
         private HttpClient Client { get; }
         protected IMapper Mapper { get; }
@@ -30,7 +31,9 @@ namespace RickAndMorty.Net.Api.Service
         protected async Task<T> Get<T>(string path)
         {
             var response = await Client.GetAsync(path);
-            return response.IsSuccessStatusCode ? JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync()) : default(T);
+            return response.IsSuccessStatusCode 
+                ? JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync()) 
+                : throw new WebException($"CODE:{response.StatusCode} URL:{path}");
         }
 
         /// <summary>

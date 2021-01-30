@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using AutoMapper;
-using Brainbay.Submission.DataAccess.Mapper;
 using Brainbay.Submission.DataAccess.Models.Enums;
 using Microsoft.Extensions.DependencyInjection;
+using RickAndMorty.Net.Api.Mapper;
 using RickAndMorty.Net.Api.Service;
 using Xunit;
 
@@ -82,6 +82,35 @@ namespace RickAndMorty.Net.Api.Tests
             Assert.True(!String.IsNullOrEmpty(result.First().Species));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Episode);
+        }
+
+
+        [Theory]
+        [InlineData(CharacterStatus.Alive)]
+        public async void FilterCharacterWithPageTest(CharacterStatus value)
+        {
+            var pageNr = 1;
+            // Get the first page
+            var result = await RickAndMortyService.FilterCharacterSinglePage(
+                page: pageNr,
+                characterStatus: value);
+
+            // Loop all pages
+            while (pageNr < result.PageInfo.Pages)
+            {
+                pageNr++;
+                result = await RickAndMortyService.FilterCharacterSinglePage(
+                page: pageNr,
+                characterStatus: value);
+                Assert.NotNull(result.PageInfo);
+                Assert.NotNull(result.Characters);
+                Assert.True(result.Characters.Any());
+                Assert.True(!String.IsNullOrEmpty(result.Characters.First().Name));
+                Assert.True(!String.IsNullOrEmpty(result.Characters.First().Species));
+                Assert.True(result.Characters.First().Created != default(DateTime));
+                Assert.NotEmpty(result.Characters.First().Episode);
+            }
+
         }
 
         [Fact]

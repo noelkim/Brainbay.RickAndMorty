@@ -1,6 +1,6 @@
-﻿using Brainbay.Submission.DataAccess.Helpers;
-using Brainbay.Submission.DataAccess.Models.Enums;
+﻿using Brainbay.Submission.DataAccess.Models.Enums;
 using RickAndMorty.Net.Api.Helpers;
+using RickAndMorty.Net.Api.Mapper;
 using Xunit;
 
 namespace RickAndMorty.Net.Api.Tests

@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brainbay.Submission.DataAccess", "Brainbay.Submission.DataAccess\Brainbay.Submission.DataAccess.csproj", "{01CAB47A-18E0-49C5-8F75-06BE071E462E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brainbay.Submission.DataAccess.Tests", "Brainbay.Submission.DataAccess.Tests\Brainbay.Submission.DataAccess.Tests.csproj", "{C82877F7-4461-4AA3-8F7E-61B0531E824C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Brainbay.Submission.DataAccess.Tests", "Brainbay.Submission.DataAccess.Tests\Brainbay.Submission.DataAccess.Tests.csproj", "{C82877F7-4461-4AA3-8F7E-61B0531E824C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brainbay.Submission.ApiScraper", "Brainbay.Submission.ApiScraper\Brainbay.Submission.ApiScraper.csproj", "{A3034211-F2B0-4E23-BAC6-A806D214BA62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{C82877F7-4461-4AA3-8F7E-61B0531E824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C82877F7-4461-4AA3-8F7E-61B0531E824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C82877F7-4461-4AA3-8F7E-61B0531E824C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3034211-F2B0-4E23-BAC6-A806D214BA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3034211-F2B0-4E23-BAC6-A806D214BA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3034211-F2B0-4E23-BAC6-A806D214BA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3034211-F2B0-4E23-BAC6-A806D214BA62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

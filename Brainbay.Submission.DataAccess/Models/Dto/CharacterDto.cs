@@ -1,4 +1,9 @@
-﻿namespace Brainbay.Submission.DataAccess.Models.Dto
+﻿using Brainbay.Submission.DataAccess.Models.Enums;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
+
+namespace Brainbay.Submission.DataAccess.Models.Dto
 {
     public class CharacterDto
     {
@@ -16,7 +21,8 @@
         /// <summary>
         /// The status of the character ('Alive', 'Dead' or 'unknown').
         /// </summary>
-        public string Status { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public CharacterStatus Status { get; set; }
 
         /// <summary>
         /// The species of the character.
@@ -31,7 +37,8 @@
         /// <summary>
         /// The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').
         /// </summary>
-        public string Gender { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public CharacterGender Gender { get; set; }
 
         /// <summary>
         /// Name and link to the character's last known location endpoint.

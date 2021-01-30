@@ -12,9 +12,10 @@ using RickAndMorty.Net.Api.Helpers;
 
 namespace RickAndMorty.Net.Api.Service
 {
-    internal class RickAndMortyService : BaseService, IRickAndMortyService
+    public class RickAndMortyService : BaseService, IRickAndMortyService
     {
-        public RickAndMortyService(HttpClient httpClient, IMapper mapper) 
+
+        public RickAndMortyService(HttpClient httpClient, IMapper mapper)
             : base(httpClient, mapper)
         {
         }
@@ -62,6 +63,28 @@ namespace RickAndMorty.Net.Api.Service
             var dto = await GetPages<CharacterDto>(url);
 
             return Mapper.Map<IEnumerable<Character>>(dto);
+        }
+
+
+        public async Task<PagedCharacters> FilterCharacterSinglePage(
+            int page = 1,
+            string name = "",
+            CharacterStatus? characterStatus = null,
+            string species = "",
+            string type = "",
+            CharacterGender? gender = null)
+        {
+            Ensure.Bool.IsTrue(!String.IsNullOrEmpty(name) || characterStatus != null ||
+                               !String.IsNullOrEmpty(species) || !String.IsNullOrEmpty(type) || gender != null);
+
+            var url = "/api/character/".BuildCharacterFilterUrl(name,
+                                                                characterStatus,
+                                                                species,
+                                                                type,
+                                                                gender);
+            var dto = await Get<PageDto<CharacterDto>>(url + "&page=" + page);
+
+            return new PagedCharacters(page, dto.Info, Mapper.Map<IEnumerable<Character>>(dto.Results));
         }
 
         public async Task<IEnumerable<Location>> GetAllLocations()

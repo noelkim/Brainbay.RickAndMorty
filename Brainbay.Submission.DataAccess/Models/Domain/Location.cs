@@ -1,10 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Brainbay.Submission.DataAccess.Models.Domain
 {
     public class Location
     {
+        /// <summary>
+        /// Private prameterless constructor.
+        /// Required for EF Core.
+        /// </summary>
+        private Location()
+        {
+
+        }
+
         /// <summary>
         /// Constructor of <see cref="Episode"/>.
         /// </summary>
@@ -15,8 +25,9 @@ namespace Brainbay.Submission.DataAccess.Models.Domain
         /// <param name="residents">List of character who have been last seen in the location.</param>
         /// <param name="url">Link to the location's own endpoint.</param>
         /// <param name="created">Time at which the location was created in the database.</param>
-        public Location(int id = 0, string name = "", string type = "", string dimension = "", IEnumerable<Uri> residents = null,
-            Uri url = null, DateTime? created = null)
+        public Location(int id = 0, string name = "", string type = "", 
+            string dimension = "", ICollection<string> residents = null,
+            string url = null, DateTime? created = null)
         {
             Id = id;
             Name = name;
@@ -50,12 +61,12 @@ namespace Brainbay.Submission.DataAccess.Models.Domain
         /// <summary>
         /// Gets list of character who have been last seen in the location.
         /// </summary>
-        public IEnumerable<Uri> Residents {get; set;}
+        public ICollection<string> Residents {get; set;}
 
         /// <summary>
         /// Gets link to the location's own endpoint.
         /// </summary>
-        public Uri Url {get; set;}
+        public string Url {get; set;}
 
         /// <summary>
         /// Gets time at which the location was created in the database. 
