@@ -8,12 +8,12 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
 ## Assignment 1: Console Application
 ### Objectives and solutions
 1. Access the REST API using the HttpClient class from the Microsoft.Extensions.Http NuGet package.
-   solution: 
+   - solution: 
    HttpClient has a few known issues like socket exhaustion and failure of DNS change with shared instance. 
    To avoid this and ensure the optimal performance, `IHttpClientFactory` interface is used as suggested by this [.Net Architecture Guide](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-request).
    
 2. The program should get all the characters from this endpoint: https://rickandmortyapi.com/api/character/
-   solution:
+   - solution:
    A [.Net Api library](https://github.com/Carlj28/RickAndMorty.Net.Api) already contributed by Carlj28(https://github.com/Carlj28) is forked.
    Below modifications are made.
       * Removed the factory pattern used for the `BaseService` and `AutoMapper` instance and replaced with Dependency Injection pattern. 
@@ -21,24 +21,24 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
       * Adjusted and moved model and DTO classes.
       
 3. Use any ADO.NET technology (for example Entity Framework) to save the data.
-   solution:
+   - solution:
    EF Core is used with SQLite file database.
    EF Core's `DbContextOptions` with in-memory type makes it possible to run unit tests against EF CRUD operations.
    Using SQLite is a convenient solution for simple db. But it comes with limitations on performance optimization. With this submistion the limitation is pronounced as lacking the bulk insertion.
    Performance of inserting a few hundred entities can be greatly improved by using BulkCopy or BulkInsert. However, since SQLite uses [UPSERT](https://www.sqlite.org/lang_UPSERT.html) this is not possible.
 
 4. Before saving the data, the database has to be emptied.
-   solution: 
+   - solution: 
    At the beginning of the program execution, EF core's `Database.EnsureDeleted()` is used for recreating the whole database.
 
  ## Assignment 2: MVC Web Application
  ### Objectives and solutions
 1. Shows a list of all the characters and offers the functionality to add a new character to the database. 
-    solution: 
+    - solution: 
     MVC 5 project is created and Scaffolding template is used for creating the `CharacterController` and views for list/detail/edit/delete/create actions.
 
 2. Retrieving the list of characters should only happen once every 5 minutes as long as no new character has been added. 
-   solution:
+   - solution:
    [ASP.NET Memory Cache] is used to store the Characters. Absolute expiration of 5 minutes is set.
    ```csharp
     var characters = await memoryCache.GetOrCreateAsync(CacheKeyCharacters,
@@ -58,7 +58,7 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
    
 3. A response header should be used to indicate whether the application got its data from the database.
    The name of the response header should be ‘from-database’.
-   solution:
+   - solution:
    A custom response header `x-cache-info` is added and 'from-cache' or 'from-database' is returned based on the source.
 
    
