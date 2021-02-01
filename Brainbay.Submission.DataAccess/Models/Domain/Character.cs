@@ -11,10 +11,10 @@ namespace Brainbay.Submission.DataAccess.Models.Domain
     public class Character
     {
         /// <summary>
-        /// Private prameterless constructor.
+        /// Prameterless constructor.
         /// Required for EF Core.
         /// </summary>
-        private Character()
+        public Character()
         {
 
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace DataLayer.EfCode.Configurations
+namespace Brainbay.Submission.DataAccess.Configurations
 {
     public class EpisodeConfig : IEntityTypeConfiguration<Episode>
     {

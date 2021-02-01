@@ -1,12 +1,8 @@
 ﻿using Brainbay.Submission.DataAccess.Models.Domain;
-using DataLayer.EfCode;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using FluentAssertions;
-using System.Threading.Tasks;
 using System;
-using System.Data.Common;
 using Microsoft.Data.Sqlite;
 
 namespace Brainbay.Submission.DataAccess.Tests.DataLayer

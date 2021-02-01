@@ -1,5 +1,4 @@
 ﻿using Brainbay.Submission.DataAccess.Models.Enums;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Newtonsoft.Json.Converters;
 using System.Text.Json.Serialization;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -51,8 +50,8 @@ namespace RickAndMorty.Net.Api.Service
             string type = "",
             CharacterGender? gender = null)
         {
-            Ensure.Bool.IsTrue(!String.IsNullOrEmpty(name) || characterStatus != null ||
-                               !String.IsNullOrEmpty(species) || !String.IsNullOrEmpty(type) || gender != null);
+            Ensure.Bool.IsTrue(!string.IsNullOrEmpty(name) || characterStatus != null ||
+                               !string.IsNullOrEmpty(species) || !string.IsNullOrEmpty(type) || gender != null);
 
             var url = "/api/character/".BuildCharacterFilterUrl(name,
                                                                 characterStatus,
@@ -66,17 +65,14 @@ namespace RickAndMorty.Net.Api.Service
         }
 
 
-        public async Task<PagedCharacters> FilterCharacterSinglePage(
+        public async Task<PagedCharacters> GetCharacterSinglePage(
             int page = 1,
             string name = "",
             CharacterStatus? characterStatus = null,
             string species = "",
             string type = "",
             CharacterGender? gender = null)
-        {
-            Ensure.Bool.IsTrue(!String.IsNullOrEmpty(name) || characterStatus != null ||
-                               !String.IsNullOrEmpty(species) || !String.IsNullOrEmpty(type) || gender != null);
-
+        {           
             var url = "/api/character/".BuildCharacterFilterUrl(name,
                                                                 characterStatus,
                                                                 species,
@@ -116,7 +112,7 @@ namespace RickAndMorty.Net.Api.Service
             string type = "",
             string dimension = "")
         {
-            Ensure.Bool.IsTrue(!String.IsNullOrEmpty(name) || !String.IsNullOrEmpty(type) || !String.IsNullOrEmpty(dimension));
+            Ensure.Bool.IsTrue(!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(type) || !string.IsNullOrEmpty(dimension));
 
             var url = "/api/location/".BuildLocationFilterUrl(name, type, dimension);
 
@@ -153,7 +149,7 @@ namespace RickAndMorty.Net.Api.Service
         public async Task<IEnumerable<Episode>> FilterEpisodes(string name = "",
             string episode = "")
         {
-            Ensure.Bool.IsTrue(!String.IsNullOrEmpty(name) || !String.IsNullOrEmpty(episode));
+            Ensure.Bool.IsTrue(!string.IsNullOrEmpty(name) || !string.IsNullOrEmpty(episode));
 
             var url = "/api/episode/".BuildEpisodeFilterUrl(name, episode);
 

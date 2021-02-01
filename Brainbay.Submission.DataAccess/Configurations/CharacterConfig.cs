@@ -2,9 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.Linq;
 
-namespace DataLayer.EfCode.Configurations
+namespace Brainbay.Submission.DataAccess.Configurations
 {
     public class CharacterConfig : IEntityTypeConfiguration<Character>
     {

@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace DataLayer.EfCode.Configurations
+namespace Brainbay.Submission.DataAccess.Configurations
 {
     public class LocationConfig : IEntityTypeConfiguration<Location>
     {
         public void Configure
             (EntityTypeBuilder<Location> entity)
         {
-            entity.Property(p => p.Created).HasColumnType("date"); 
+            entity.Property(p => p.Created).HasColumnType("date");
 
             entity.Property(x => x.Url).IsUnicode(false);
 

@@ -37,8 +37,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Id == value);
-            Assert.True(!String.IsNullOrEmpty(result.Name));
-            Assert.True(!String.IsNullOrEmpty(result.Species));
+            Assert.True(!string.IsNullOrEmpty(result.Name));
+            Assert.True(!string.IsNullOrEmpty(result.Species));
             Assert.True(result.Created != default(DateTime));
             Assert.NotEmpty(result.Episode);
         }
@@ -50,8 +50,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().Species));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().Species));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Episode);
         }
@@ -64,8 +64,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().Species));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().Species));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Episode);
         }
@@ -78,39 +78,10 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().Species));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().Species));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Episode);
-        }
-
-
-        [Theory]
-        [InlineData(CharacterStatus.Alive)]
-        public async void FilterCharacterWithPageTest(CharacterStatus value)
-        {
-            var pageNr = 1;
-            // Get the first page
-            var result = await RickAndMortyService.FilterCharacterSinglePage(
-                page: pageNr,
-                characterStatus: value);
-
-            // Loop all pages
-            while (pageNr < result.PageInfo.Pages)
-            {
-                pageNr++;
-                result = await RickAndMortyService.FilterCharacterSinglePage(
-                page: pageNr,
-                characterStatus: value);
-                Assert.NotNull(result.PageInfo);
-                Assert.NotNull(result.Characters);
-                Assert.True(result.Characters.Any());
-                Assert.True(!String.IsNullOrEmpty(result.Characters.First().Name));
-                Assert.True(!String.IsNullOrEmpty(result.Characters.First().Species));
-                Assert.True(result.Characters.First().Created != default(DateTime));
-                Assert.NotEmpty(result.Characters.First().Episode);
-            }
-
         }
 
         [Fact]
@@ -120,8 +91,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().Dimension));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().Dimension));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Residents);
         }
@@ -134,8 +105,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().Dimension));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().Dimension));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Residents);
         }
@@ -148,8 +119,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Id == value);
-            Assert.True(!String.IsNullOrEmpty(result.Name));
-            Assert.True(!String.IsNullOrEmpty(result.Dimension));
+            Assert.True(!string.IsNullOrEmpty(result.Name));
+            Assert.True(!string.IsNullOrEmpty(result.Dimension));
             Assert.True(result.Created != default(DateTime));
             Assert.NotEmpty(result.Residents);
         }
@@ -162,8 +133,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().Dimension));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().Dimension));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Residents);
         }
@@ -175,8 +146,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().EpisodeCode));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().EpisodeCode));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Characters);
         }
@@ -189,8 +160,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Id == value);
-            Assert.True(!String.IsNullOrEmpty(result.Name));
-            Assert.True(!String.IsNullOrEmpty(result.EpisodeCode));
+            Assert.True(!string.IsNullOrEmpty(result.Name));
+            Assert.True(!string.IsNullOrEmpty(result.EpisodeCode));
             Assert.True(result.Created != default(DateTime));
             Assert.NotEmpty(result.Characters);
         }
@@ -203,8 +174,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().EpisodeCode));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().EpisodeCode));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Characters);
         }
@@ -217,8 +188,8 @@ namespace RickAndMorty.Net.Api.Tests
 
             Assert.NotNull(result);
             Assert.True(result.Any());
-            Assert.True(!String.IsNullOrEmpty(result.First().Name));
-            Assert.True(!String.IsNullOrEmpty(result.First().EpisodeCode));
+            Assert.True(!string.IsNullOrEmpty(result.First().Name));
+            Assert.True(!string.IsNullOrEmpty(result.First().EpisodeCode));
             Assert.True(result.First().Created != default(DateTime));
             Assert.NotEmpty(result.First().Characters);
         }

@@ -9,12 +9,12 @@ namespace RickAndMorty.Net.Api.Helpers
 
         public static int GetNextPageNumber(this string url)
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
                 return -1;
 
             var result = PagePattern.Match(url).Groups["pagenr"].Value;
 
-            if (String.IsNullOrEmpty(result))
+            if (string.IsNullOrEmpty(result))
                 return -1;
 
             return Convert.ToInt32(result);

@@ -1,11 +1,12 @@
-﻿using Brainbay.Submission.DataAccess.Models.Domain;
-using DataLayer.EfCode.Configurations;
+﻿using Brainbay.Submission.DataAccess.Configurations;
+using Brainbay.Submission.DataAccess.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataLayer.EfCode
+namespace Brainbay.Submission.DataAccess
 {
     public class RickAndMortyContext : DbContext
     {
+
         public RickAndMortyContext(
             DbContextOptions<RickAndMortyContext> options)
             : base(options) { }

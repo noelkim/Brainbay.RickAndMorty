@@ -56,7 +56,7 @@ namespace RickAndMorty.Net.Api.Service
         /// <param name="gender">Filter by the given gender (female, male, genderless or unknown).</param>
         /// <returns>A ValueTuple. First item is the <see cref="PageInfoDto"/>.
         ///          Second item is the characters enumerable.</returns>
-        Task<PagedCharacters> FilterCharacterSinglePage(int page = 1,
+        Task<PagedCharacters> GetCharacterSinglePage(int page = 1,
                                                                               string name = "",
                                                                               CharacterStatus? characterStatus = null,
                                                                               string species = "",

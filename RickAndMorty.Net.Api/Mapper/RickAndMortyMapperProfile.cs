@@ -2,7 +2,6 @@
 using AutoMapper;
 using Brainbay.Submission.DataAccess.Models.Domain;
 using Brainbay.Submission.DataAccess.Models.Dto;
-using Brainbay.Submission.DataAccess.Models.Enums;
 
 namespace RickAndMorty.Net.Api.Mapper
 {
