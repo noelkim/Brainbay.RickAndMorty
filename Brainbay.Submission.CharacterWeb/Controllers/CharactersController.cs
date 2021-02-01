@@ -30,7 +30,7 @@ namespace Brainbay.Submission.CharacterWeb.Controllers
             var characters = await memoryCache.GetOrCreateAsync(CacheKeyCharacters,
                 async entry =>
              {
-                 entry.SlidingExpiration = TimeSpan.FromSeconds(10);
+                 entry.AbsoluteExpiration = DateTime.Now.AddMinutes(5); // Absolute expiration after 5 minutes
                  Response.Headers["X-cache-info"] = "from-database";
                  return await _context.Characters.ToListAsync();
              });

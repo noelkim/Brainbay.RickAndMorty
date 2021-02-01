@@ -8,11 +8,11 @@ using RickAndMorty.Net.Api.Mapper;
 
 namespace Brainbay.Submission.DataAccess.Tests.DataLayer
 {
-    public class CharacterDomainTests : EntityTestsBase
+    public class CharacterDtoTests : EntityTestsBase
     {
         private readonly IMapper mapper;
 
-        public CharacterDomainTests()
+        public CharacterDtoTests()
         {
             this.mapper = new MapperConfiguration(c => c.AddProfile<RickAndMortyMapperProfile>())
                     .CreateMapper();
