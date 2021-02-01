@@ -14,7 +14,7 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
    
 2. The program should get all the characters from this endpoint: https://rickandmortyapi.com/api/character/
    - solution:
-   A [.Net Api library](https://github.com/Carlj28/RickAndMorty.Net.Api) already contributed by Carlj28(https://github.com/Carlj28) is forked.
+   A [.Net Api library](https://github.com/Carlj28/RickAndMorty.Net.Api) already contributed by [Carlj28](https://github.com/Carlj28) is forked.
    Below modifications are made.
       * Removed the factory pattern used for the `BaseService` and `AutoMapper` instance and replaced with Dependency Injection pattern. 
      This allows `HttpClient` and `AutoMapperProfiler` to be injected.
@@ -68,6 +68,7 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
  Given task has two distinctive tech-stacks namely Web and DB. Separating the extration part from saving part is important to keep two different concerns apart.
  Without overdoing the architecture, [TPL Dataflow library from the Microsoft](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/dataflow-task-parallel-library) provides an easy means to setup the pipleline of distinctive tasks.
  Using the TPL Dataflow comes with below benefits:
+ 
     * Fine control over the parallelism
     * Thread safety over the mutable objects
     * Modular building blocks for flexible ETL pipeline
@@ -88,7 +89,7 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
 
    ```
  
- Default setting for the concurrent connection is only 2 for Console applications. (https://docs.microsoft.com/en-us/dotnet/api/system.net.servicepointmanager.defaultconnectionlimit?view=net-5.0)
+ Default setting for the concurrent connection is only 2 for Console applications.
  Therefore, [ServicePointManager](https://docs.microsoft.com/en-us/dotnet/api/system.net.servicepointmanager.defaultconnectionlimit?view=net-5.0) is used to set the connection limit same as the maximum parallel operations.
  ```csharp
  ServicePointManager.DefaultConnectionLimit = MaxParallel;
@@ -96,16 +97,17 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
  
  ## For Extra Points
 Create a view that shows all the characters from a given planet. The application should accept the planet in the URL.
-solution:
-Because of a time constraint, this is implemented in a simple way.
-Adding a query string `locationId` and passing in the Id property of a character's origin location will filter the Index view as such.
+ - solution:
+Because of the time constraint, it is implemented in a very simple way.
+Adding a query string `locationId` and passing in the Id property of a character's origin location will filter the Index view accordingly.
+
 e.g) https://localhost:44351/Characters?locationId=1  
 
 ## Unit test projects
 Brainbay.Submission.DataAccess has its matching test project Brainbay.Submission.DataAcess.Tests with below test classes.
-* ChracterEntityTests.cs: this contains the EF entity tests for Chracter class
-* ChracterDtoTests.cs: this contains the EF data saving from the DTO objects so that the DTO<>Entity mapping done with AutoMapper can be tested.
-* EntityTestsBase.cs: includes the test setup codes. Although EF in-memory option can be used, instead SQLite with memory datasource is used.
+* CharacterEntityTests.cs: contains the EF entity tests for Character class
+* CharacterDtoTests.cs: contains the EF data saving from the DTO objects so that the DTO <> Entity mapping with AutoMapper can be tested.
+* EntityTestsBase.cs: includes the test setup codes. Although EF in-memory option can be used, SQLite with memory datasource is used instead.
 ```csharp
             // Use Sqlite in-memory database 
             dbOptions = new DbContextOptionsBuilder<RickAndMortyContext>()
@@ -113,8 +115,8 @@ Brainbay.Submission.DataAccess has its matching test project Brainbay.Submission
 ```
   This overcomes the limitation of EF in-memory option being non-relational database. 
   
-Original .Net API from Carlj28 comes with test project. This is modified with below points.
-* [FluentAssertions](https://fluentassertions.com/) is used to improve the assert statement readability as below.
+Original .Net API from Carlj28 comes with a test project. This is modified as below.
+* [FluentAssertions](https://fluentassertions.com/) is used to improve the assert statement readability.
 ```csharp
 
             // ASSERT
@@ -123,20 +125,20 @@ Original .Net API from Carlj28 comes with test project. This is modified with be
             characterList.Select(n => n.Id).Should().OnlyHaveUniqueItems("ID is expected to be unique.");
 ```
 * Dependency Injection container `ServiceCollection` is used to inject the injectables.
-Due to the fact that these tests are integration unit tests, Moq or usual Stub generating tools are not used.
+Due to the fact that these tests are in fact integration unit tests, Moq or usual Stub generating tools are not used.
 
 
 # Future improvements
-Due to the time restriction, the submission has ample room for the future improvements.
+This submission has ample room for the future improvements.
 ## More performance optimization
-* Devise a local Web API to remove the network latency from the equasion
+* Devise a local Web API to remove the network latency from the equasion and measure the performance
 * [Use Benchmark library](https://github.com/dotnet/BenchmarkDotNet) for module level perf data collection.
 * For the server farm, distributed cache is more desirable than the memory cache
 
 
 ## Resilient API fetching
-* Prepare for the Rate Limiting from the server by having a dynamic throttling. (most do for the protection of DDos attack)
-* Introduce transaction per page or per domain to roll back in case of a partial failure. 
+* Prepare for the Rate Limiting from the server by devising a dynamic throttling. (most of servers have rate limiting in protection of DDos attack)
+* Introduce transaction mechanism. Transation per page or per domain can prevent the data anomaly in case of a partial failure. 
 
 
 
