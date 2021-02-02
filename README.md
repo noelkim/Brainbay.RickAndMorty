@@ -10,7 +10,7 @@ Build and start the ASP.NET MVC app Brainbay.Submission.CharacterWeb for the ass
 1. Access the REST API using the HttpClient class from the Microsoft.Extensions.Http NuGet package.
    - solution: 
    HttpClient has a few known issues like socket exhaustion and failure of DNS change with shared instance. 
-   To avoid this and ensure the optimal performance, `IHttpClientFactory` interface is used as suggested by this [.Net Architecture Guide](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-request).
+   To avoid this and ensure the optimal performance, `IHttpClientFactory` interface is used as suggested by this [.Net Architecture Guide](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-5.0).
    
 2. The program should get all the characters from this endpoint: https://rickandmortyapi.com/api/character/
    - solution:
